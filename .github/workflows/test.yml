@@ -18,6 +18,5 @@ jobs:
         run: make test
       - name: Binary sizes
         run: |
-          strip -o /tmp/stripped-cat bin/cat
           for p in cat wc hexdump rev; do strip -o "/tmp/s-$p" "bin/$p"; done
           ls -l bin/cat bin/wc bin/hexdump bin/rev /tmp/s-*
