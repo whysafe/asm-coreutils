@@ -1,0 +1,18 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    # pinned: the comparison is against GNU coreutils and util-linux
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install NASM
+        run: sudo apt-get update && sudo apt-get install -y nasm bsdextrautils
+      - name: Build
+        run: make
+      - name: Test against GNU coreutils / util-linux
+        run: make test
